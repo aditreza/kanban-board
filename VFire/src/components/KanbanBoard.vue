@@ -1,17 +1,43 @@
 <template>
   <div style="margin-top:5%; margin-bottom:5%;" class="container">
       <div class="row">
+        <!-- START BACK-LOG -->
         <div class="col">
-          <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-            <div class="card-header">Header</div>
-            <div v-for="kanbanTasks of task" :key="kanbanTasks['.key']">
+          <div class="card border-danger mb-3" style="max-width: 20rem;">
+            <div style="font-weight:bold; background:#dc3545; color:white" class="card-header">BACK-LOG</div>
+            <div v-for="kanbanTasks of task" :key="kanbanTasks['.key']" class="card-body text-primary">
               <Kanban></Kanban>
             </div>
           </div>
         </div>
-        <!-- <div class="col"><Kanban></Kanban></div>
-        <div class="col"><Kanban></Kanban></div>
-        <div class="col"><Kanban></Kanban></div> -->
+        <!-- START TO-DO -->
+        <div class="col">
+          <div class="card border-warning mb-3" style="max-width: 20rem;">
+            <div style="font-weight:bold; background:#fec207; color:white" class="card-header">TO-DO</div>
+            <div v-for="kanbanTasks of task" :key="kanbanTasks['.key']" class="card-body text-primary">
+              <Kanban></Kanban>
+            </div>
+          </div>
+        </div>
+        <!-- START DOING -->
+        <div class="col">
+          <div class="card border-primary mb-3" style="max-width: 20rem;">
+            <div style="font-weight:bold; background:#027aff; color:white" class="card-header">DOING</div>
+            <div v-for="kanbanTasks of task" :key="kanbanTasks['.key']" class="card-body text-primary">
+              <Kanban></Kanban>
+            </div>
+          </div>
+        </div>
+        <!-- START DONE -->
+        <div class="col">
+          <div class="card border-success mb-3" style="max-width: 20rem;">
+            <div style="font-weight:bold; background:#26a745; color:white" class="card-header">DONE</div>
+            <div v-for="kanbanTasks of task" :key="kanbanTasks['.key']" class="card-body text-primary">
+              <Kanban></Kanban>
+            </div>
+          </div>
+        </div>
+        
       </div>
     <!-- start modal -->
     <div class="modal fade" id="modalAddTask" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
