@@ -11,8 +11,9 @@
                 <div class="kanban-card card mb-3" style="margin-bottom: -28%; margin-bottom:-28%; color:black; text-align:left; max-width: 20rem;">
                   <div class="card-header">{{ kanbanTasks.title }}</div>
                   <div class="card-body text-primary">
-                    <p style="color:black;" class="card-text">{{ kanbanTasks.point }}</p>
-                    <p style="color:black;" class="card-text">{{ kanbanTasks.toAssign }}</p>
+                    <p style="color:black;" class="card-text">point : {{ kanbanTasks.point }}</p>
+                    <p style="color:black;" class="card-text">assign : {{ kanbanTasks.toAssign }}</p>
+                    <p style="color:black;" class="card-text">desc : {{ kanbanTasks.desc }}</p>
                     <button @click="toremove(kanbanTasks['.key'])" type="button" class="btn btn-danger btn-sm">delete</button>
                     <button @click="toTodo(kanbanTasks['.key'])" type="button" class="btn btn-warning btn-sm">TO-DO</button>
                   </div>
@@ -32,8 +33,9 @@
                 <div class="card mb-3" style="color:black; text-align:left; max-width: 20rem;">
                   <div class="card-header">{{ kanbanTasks.title }}</div>
                   <div class="card-body text-primary">
-                    <p style="color:black;" class="card-text">{{ kanbanTasks.point }}</p>
-                    <p style="color:black;" class="card-text">{{ kanbanTasks.toAssign }}</p>
+                    <p style="color:black;" class="card-text">point : {{ kanbanTasks.point }}</p>
+                    <p style="color:black;" class="card-text">assign : {{ kanbanTasks.toAssign }}</p>
+                    <p style="color:black;" class="card-text">desc : {{ kanbanTasks.desc }}</p>
                     <button @click="toBacklog(kanbanTasks['.key'])" type="button" class="btn btn-danger btn-sm">Back-log</button>
                     <button @click="toremove(kanbanTasks['.key'])"type="button" class="btn btn-warning btn-sm">delete</button>
                     <button @click="toDoing(kanbanTasks['.key'])" type="button" class="btn btn-primary btn-sm">Doing</button>
@@ -54,8 +56,9 @@
                 <div class="card mb-3" style="color:black; text-align:left; max-width: 20rem;">
                   <div class="card-header">{{ kanbanTasks.title }}</div>
                   <div class="card-body text-primary">
-                    <p style="color:black;" class="card-text">{{ kanbanTasks.point }}</p>
-                    <p style="color:black;" class="card-text">{{ kanbanTasks.toAssign }}</p>
+                    <p style="color:black;" class="card-text">point : {{ kanbanTasks.point }}</p>
+                    <p style="color:black;" class="card-text">assign : {{ kanbanTasks.toAssign }}</p>
+                    <p style="color:black;" class="card-text">desc : {{ kanbanTasks.desc }}</p>
                     <button @click="toTodo(kanbanTasks['.key'])" type="button" class="btn btn-warning btn-sm">To-Do</button>
                     <button @click="toremove(kanbanTasks['.key'])" type="button" class="btn btn-primary btn-sm">delete</button>
                     <button @click="toDone(kanbanTasks['.key'])" type="button" class="btn btn-success btn-sm">Done</button>
@@ -76,8 +79,9 @@
                 <div class="card mb-3" style="color:black; text-align:left; max-width: 20rem;">
                   <div class="card-header">{{ kanbanTasks.title }}</div>
                   <div class="card-body text-primary">
-                    <p style="color:black;" class="card-text">{{ kanbanTasks.point }}</p>
-                    <p style="color:black;" class="card-text">{{ kanbanTasks.toAssign }}</p>
+                    <p style="color:black;" class="card-text">point : {{ kanbanTasks.point }}</p>
+                    <p style="color:black;" class="card-text">assign : {{ kanbanTasks.toAssign }}</p>
+                    <p style="color:black;" class="card-text">desc : {{ kanbanTasks.desc }}</p>
                     <button @click="toDoing(kanbanTasks['.key'])" type="button" class="btn btn-primary btn-sm">Doing</button>
                     <button @click="toremove(kanbanTasks['.key'])" type="button" class="btn btn-success btn-sm">delete</button>
                   </div>
