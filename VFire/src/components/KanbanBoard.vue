@@ -13,7 +13,8 @@
                   <div class="card-body text-primary">
                     <p style="color:black;" class="card-text">{{ kanbanTasks.point }}</p>
                     <p style="color:black;" class="card-text">{{ kanbanTasks.toAssign }}</p>
-                    <button data-toggle="modal" data-target="#detailTask" type="button" class="btn btn-secondary btn-sm">detail</button>
+                    <button @click="toremove(kanbanTasks['.key'])" type="button" class="btn btn-danger btn-sm">delete</button>
+                    <button @click="toTodo(kanbanTasks['.key'])" type="button" class="btn btn-warning btn-sm">TO-DO</button>
                   </div>
                 </div>
                 <!-- end kanban -->
@@ -33,7 +34,9 @@
                   <div class="card-body text-primary">
                     <p style="color:black;" class="card-text">{{ kanbanTasks.point }}</p>
                     <p style="color:black;" class="card-text">{{ kanbanTasks.toAssign }}</p>
-                    <button data-toggle="modal" data-target="#detailTask" type="button" class="btn btn-secondary btn-sm">detail</button>
+                    <button @click="toBacklog(kanbanTasks['.key'])" type="button" class="btn btn-danger btn-sm">Back-log</button>
+                    <button @click="toremove(kanbanTasks['.key'])"type="button" class="btn btn-warning btn-sm">delete</button>
+                    <button @click="toDoing(kanbanTasks['.key'])" type="button" class="btn btn-primary btn-sm">Doing</button>
                   </div>
                 </div>
                 <!-- end kanban -->
@@ -53,7 +56,9 @@
                   <div class="card-body text-primary">
                     <p style="color:black;" class="card-text">{{ kanbanTasks.point }}</p>
                     <p style="color:black;" class="card-text">{{ kanbanTasks.toAssign }}</p>
-                    <button data-toggle="modal" data-target="#detailTask" type="button" class="btn btn-secondary btn-sm">detail</button>
+                    <button @click="toTodo(kanbanTasks['.key'])" type="button" class="btn btn-warning btn-sm">To-Do</button>
+                    <button @click="toremove(kanbanTasks['.key'])" type="button" class="btn btn-primary btn-sm">delete</button>
+                    <button @click="toDone(kanbanTasks['.key'])" type="button" class="btn btn-success btn-sm">Done</button>
                   </div>
                 </div>
                 <!-- end kanban -->
@@ -73,7 +78,8 @@
                   <div class="card-body text-primary">
                     <p style="color:black;" class="card-text">{{ kanbanTasks.point }}</p>
                     <p style="color:black;" class="card-text">{{ kanbanTasks.toAssign }}</p>
-                    <button data-toggle="modal" data-target="#detailTask" type="button" class="btn btn-secondary btn-sm">detail</button>
+                    <button @click="toDoing(kanbanTasks['.key'])" type="button" class="btn btn-primary btn-sm">Doing</button>
+                    <button @click="toremove(kanbanTasks['.key'])" type="button" class="btn btn-success btn-sm">delete</button>
                   </div>
                 </div>
                 <!-- end kanban -->
@@ -83,36 +89,6 @@
         </div>
         
       </div>
-    <!-- START MODAL DETAIL TASK-->
-    <div class="modal fade" id="detailTask" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 style="color:black;" class="modal-title" id="exampleModalLabel">DETAIL</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div style="text-align:left; color:black;" class="form-group">
-                <label style="font-weight:bold; color:black;" class="col-form-label">Task Desc :</label>
-                <label style="font-weight:bold; color:black;" class="col-form-label">Enak</label><br>
-                <label style="font-weight:bold; color:black;" class="col-form-label">Point :</label>
-                <label style="font-weight:bold; color:black;" class="col-form-label">5</label><br>
-                <label style="font-weight:bold; color:black;" class="col-form-label">Status :</label>
-                <label style="font-weight:bold; color:black;" class="col-form-label">Doing</label>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">prev</button>
-            <button type="button" class="btn btn-primary">delete</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">next</button>
-          </div>
-        </div>
-      </div>
-    </div>
     <!-- start modal new task-->
     <div class="modal fade" id="modalAddTask" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -135,7 +111,7 @@
                 <label for="recipient-name" class="col-form-label">Assign:</label>
                 <input v-model="taskTraffic.toAssign" type="text" class="form-control" required>
                 <label for="recipient-name" class="col-form-label">Status:</label>
-                <input v-model="taskTraffic.status" type="text" class="form-control" required>
+                <input v-model="taskTraffic.status" type="text" class="form-control" disabled>
               </div>
             </form>
           </div>
@@ -175,7 +151,7 @@ export default {
         desc: '',
         point: '',
         toAssign: '',
-        status: ''
+        status: 'backlog'
       }
     }
   },
@@ -187,6 +163,22 @@ export default {
       this.taskTraffic.desc = ''
       this.taskTraffic.point = ''
       this.taskTraffic.toAssign = ''
+    },
+    toTodo (key) {
+      console.log('masuk')
+      kanbanTasks.child(key).update({ status: 'todo' })
+    },
+    toBacklog (key) {
+      kanbanTasks.child(key).update({ status: 'backlog' })
+    },
+    toDoing (key) {
+      kanbanTasks.child(key).update({ status: 'doing' })
+    },
+    toDone (key) {
+      kanbanTasks.child(key).update({ status: 'done' })
+    },
+    toremove (key) {
+      kanbanTasks.child(key).remove()
     }
   }
 }
